@@ -1,0 +1,13 @@
+---
+    applications:
+    - name: mg-app
+      memory: 512MB
+      disk_quota: 1GB
+      random-route: true
+      buildpacks:
+        - python_buildpack
+      env:
+        PIP_DISABLE_PIP_VERSION_CHECK: 1
+        PIP_NO_CACHE_DIR: 1
+
+

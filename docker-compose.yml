@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  web:
+    build: ./modelapp
+    image: modelapp_image
+    container_name: modelapp
+    volumes:
+      - "./model_images:/home/appuser/app/static/files"
+      - "./local-db:/home/appuser/app/local-db"
+      - "./tmpfiles:/home/appuser/app/tmpfiles"
+    expose:
+      - 5000
+  nginx:
+    build: ./nginx
+    image: nginx_image
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
