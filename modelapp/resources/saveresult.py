@@ -7,7 +7,7 @@ from models.result import ResultModel
 from models.user import UserModel
 from schemas.result import ResultSchema
 from libs import image_helper
-
+from flask_uploads import UploadNotAllowed
 from libs.strings import gettext
 import logging
 import traceback
@@ -27,13 +27,27 @@ class SaveResult(Resource):
 
         if "model_id" in request.form:
             id=request.form.get("model_id")
+            print('model_id='+id)
+            design = DesignModel.find_by_id(id)
+            if not design:
+                return {"message": gettext("getfile_design_notfound")}, 404
         else:
-            return {"message": gettext("getfile_file_notfound")}, 404
-        print('model_id='+id)
-        design = DesignModel.find_by_id(id)
-        if not design:
-            return {"message": gettext("getfile_design_notfound")}, 404
-
+            file1 = request.files['resultfile1']
+            username = UserModel.find_by_id(get_jwt_identity()).username
+            name = file1.filename
+            if DesignModel.find_by_designname_and_username(name,username):
+                return {"message": gettext("design_name_exists")}, 404
+            try:
+                folder = f"user_{username}"
+                image_path = image_helper.save_image(file1, folder=os.path.join(folder))
+            except UploadNotAllowed:  # forbidden file type
+                return {"message": gettext("unsupported_fileextension")}, 500
+            design = DesignModel(name=name,username=username,objname=image_path)
+            try:
+                design.save_to_db()
+            except:
+                traceback.print_exc()
+                return {"message": gettext("savemodel_failed")}, 500
         if design:
             try:
                 username = UserModel.find_by_id(get_jwt_identity()).username
@@ -54,5 +68,3 @@ class SaveResult(Resource):
             return {"message": gettext("getfile_file_notfound")}, 404
 
         return {"message": gettext("getfile_design_notfound")}, 404
-
-
