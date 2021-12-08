@@ -7,8 +7,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 NAME_ALREADY_EXISTS = "A model with name '{}' already exists."
 ERROR_INSERTING = "An model occurred while inserting the model."
-DESIGN_NOT_FOUND = "Model not found."
-DESIGN_DELETED = "Model deleted."
+DESIGN_NOT_FOUND = "Anchor not found."
+DESIGN_DELETED = "Anchor deleted."
 
 design_schema = DesignSchema()
 design_list_schema = DesignSchema(many=True)

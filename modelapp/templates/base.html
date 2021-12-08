@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Model App</title>
+    <title>Anchor App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
@@ -12,7 +12,7 @@
 <body>
     <div class="content container mt-2">
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-            <a class="navbar-brand" href="#">Model App</a>
+            <a class="navbar-brand" href="#">Anchor App</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,9 +20,9 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav"></div>
                 {% if session['username'] %}
-                    <a class="nav-item nav-link" href="{{ url_for('webmodels.index') }}">Models</a>
+                    <a class="nav-item nav-link" href="{{ url_for('webmodels.index') }}">Anchors</a>
                     {% if session['username']  and session['admin'] %}
-                        <a class="nav-item nav-link" href="{{ url_for('webmodels_all.index') }}">All Models</a>
+                        <a class="nav-item nav-link" href="{{ url_for('webmodels_all.index') }}">All Anchors</a>
                         <a class="nav-item nav-link" href="{{ url_for('webresults_all.index') }}">All Results</a>
                     {% endif %}
                     <a class="nav-item nav-link" href="{{ url_for('webuser.logut_user') }}">Sign Out</a>

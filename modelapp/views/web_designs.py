@@ -33,7 +33,7 @@ def create_model():
         file1 = request.files['file1']
         name = file1.filename
         if DesignModel.find_by_designname_and_username(name,session['username']):
-            return "Model already exists with name. Try another name"
+            return "Anchor already exists with name. Try another name"
 
         try:
             username = session['username']
