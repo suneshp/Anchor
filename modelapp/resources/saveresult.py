@@ -48,6 +48,7 @@ class SaveResult(Resource):
             except:
                 traceback.print_exc()
                 return {"message": gettext("savemodel_failed")}, 500
+            return {"message": gettext("savemodel_stored")}, 200
         if design:
             try:
                 username = UserModel.find_by_id(get_jwt_identity()).username

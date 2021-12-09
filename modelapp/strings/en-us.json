@@ -22,7 +22,8 @@
   "getfile_item_notfound": "Item not found.",
   "getfile_file_notfound": "File not found.",
   "saveresult_stored": "Result stored successfully.",
+  "savemodel_stored": "Anchor stored successfully.",
   "unsupported_fileextension": "This file extension is not supported.",
-  "savemodel_failed": "An error occurred while inserting the model.",
+  "savemodel_failed": "An error occurred while inserting the anchor.",
   "saveresult_failed": "An error occurred while inserting the result."
 }
